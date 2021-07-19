@@ -23,17 +23,6 @@ export default {
       visibleField: [],
     };
   },
-  computed: {
-    init() {
-      for (let foo = 0; foo < 25; foo++) {
-        this.initField.push({
-          show: false,
-          order: false,
-        });
-      }
-      return (this.visibleField = [...this.initField]);
-    },
-  },
   methods: {
     start() {
       if (this.lvl < 12) {
@@ -53,10 +42,19 @@ export default {
       }
     },
   },
+  mounted() {
+    for (let foo = 0; foo < 25; foo++) {
+      this.initField.push({
+        show: false,
+        order: false,
+      });
+    }
+    return (this.visibleField = [...this.initField]);
+  },
 };
 </script>
 
-<style scoped type="css">
+<style scoped lang="scss">
 .wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -98,9 +96,9 @@ export default {
   background: lightseagreen;
 
   cursor: pointer;
-}
 
-.start-btn:disabled {
-  background: lightgray;
+  &:disabled {
+    background: lightgray;
+  }
 }
 </style>
