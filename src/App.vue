@@ -7,7 +7,10 @@
 import Bord from "./components/Bord.vue";
 </script>
 
-<style>
+<style lang="scss">
+* {
+  box-sizing: border-box;
+}
 #app {
   font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
