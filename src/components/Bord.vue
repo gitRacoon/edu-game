@@ -2,51 +2,68 @@
   <div class="wrapper">
     <div
       class="item"
-      :class="{ show: foo.show }"
+      :class="{ show: foo.show, pick: foo.pick, }"
       v-for="(foo, i) in visibleField"
       :key="i"
+      @click="checkup()"
     />
   </div>
   <p class="lvl">
     Complexity: <strong>{{ lvl }}</strong>
   </p>
-  <button class="start-btn" :disabled="animated" @click="start()">Start</button>
+  <button :class="behavior" :disabled="shutdown" @click="report()">{{ behavior }}</button>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      animated: false,
+      behavior: 'start',
       initField: [],
       lvl: 0,
+      shutdown: false,
       visibleField: [],
     };
   },
   methods: {
-    start() {
+    report() {  //* Реакция на кнопку.
+    switch (this.behavior) {
+      case 'start':
+      case 'next':
+        this.behavior = 'restart';
+        this.advance();
+        break;
+      case 'restart':
+        break;
+      default:
+        console.log('Something went wrong!');
+    }
+
+      this.reveal();
+      setTimeout(this.reveal, 1000);
+
+      this.visibleField.sort(() => Math.random() - 0.5);
+    },
+    advance() {  //* Увеличивает сложность.
       if (this.lvl < 12) {
         this.initField[this.lvl].order = true;
         this.lvl++;
       }
-
-      this.animate();
-      setTimeout(this.animate, 1000);
-
-      this.visibleField.sort(() => Math.random() - 0.5);
     },
-    animate() {
-      this.animated = !this.animated;
+    reveal() {  //* Переключает видимость загаданных ячеек.
+      this.shutdown = !this.shutdown;
       for (let foo = 0; foo < this.lvl; foo++) {
         this.initField[foo].show = !this.initField[foo].show;
       }
     },
+    checkup() {},  //TODO: реакция на нажатие клавиши.
   },
   mounted() {
     for (let foo = 0; foo < 25; foo++) {
       this.initField.push({
-        show: false,
         order: false,
+        pick: false,
+        show: false,
       });
     }
     return (this.visibleField = [...this.initField]);
@@ -71,10 +88,14 @@ export default {
 
   transition: background 0.2s linear;
   cursor: pointer;
-}
 
-.show {
-  background: lightseagreen;
+  &.show {
+    background: lightseagreen;
+  }
+
+  &.pick {
+    border: 2px solid lightseagreen;
+  }
 }
 
 .lvl {
@@ -83,19 +104,34 @@ export default {
   letter-spacing: 0.1rem;
 }
 
-.start-btn {
+button {
   padding: 5px 20px;
 
   font-family: inherit;
   font-size: 1rem;
   line-height: 1rem;
   color: white;
+  text-transform: capitalize;
 
   border: none;
   border-radius: 5px;
-  background: lightseagreen;
+  background: lightgray;
 
   cursor: pointer;
+  opacity: 1;
+  transition: all .2s linear;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.start {
+    background: lightseagreen;
+  }
+
+  &.restart {
+    background: tomato;
+  }
 
   &:disabled {
     background: lightgray;
