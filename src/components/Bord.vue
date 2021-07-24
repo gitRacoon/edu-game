@@ -1,8 +1,8 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :class="{ lock: lock }">
     <div
-      class="item"
-      :class="{ show: bar.show, pick: bar.pick && bar.order, miss: bar.pick && !bar.order }"
+      class="item animate__animated"
+      :class="{ show: bar.show, animate__headShake: bar.show, pick: bar.pick && bar.order, miss: bar.pick && !bar.order, lock: bar.pick, }"
       v-for="(bar, foo) of visibleField"
       :key="foo"
       @click="checkup(foo)"
@@ -20,6 +20,7 @@ export default {
     return {
       behavior: "start",
       initField: [],
+      lock: true,
       lvl: 0,
       found: 0,
       shutdown: false,
@@ -40,33 +41,28 @@ export default {
     report() {  //* Реагирует на главную кнопку.
     switch (this.behavior) {
       case "start":
-        this.behavior = "restart";
-        this.advance();
-        break;
-      case "restart":
-        break;
-      case "lose":
-        this.dismiss();
-        break;
       case "next":
-        this.behavior = "restart";
-        this.dismiss();
         this.advance();
         break;
       case "replay":
-        this.behavior = "restart";
+        this.lvl = 0;
         this.setzero();
-        this.dismiss();
         this.advance();
         break;
+      case "restart":
+        this.locker();
+        break;
       default:
-        console.log("Something went wrong!");
+        break;
     }
+    this.found = 0;
+    this.dismiss();
 
-      this.reveal();
-      setTimeout(this.reveal, 1000);
+    this.reveal();
+    setTimeout(this.reveal, 1000);
+    setTimeout(this.locker, 1000);
 
-      this.visibleField.sort(() => Math.random() - 0.5);
+    this.visibleField.sort(() => Math.random() - 0.5);
     },
     checkup(foo) {  //* Реагирует на выбор ячейки.
       this.visibleField[foo].pick = true;
@@ -74,16 +70,17 @@ export default {
       if (this.visibleField[foo].order) {
         this.found++;
       } else {
-        this.shutdown = true;
         this.behavior = "lose";
-        setTimeout(this.report, 1000);
+        this.locker();
       }
 
       if (this.found === this.lvl && this.lvl < 12) {
         this.behavior = "next";
+        this.locker();
       } else if (this.found === this.lvl && this.lvl === 12) {
-        this.lvl = 0;
+        this.lvl = "MAX";
         this.behavior = "replay";
+        this.locker();
       }
     },
     reveal() {  //* Переключает видимость загаданных ячеек.
@@ -103,17 +100,19 @@ export default {
         this.visibleField[foo].pick = false;
       }
 
-      this.found = 0;
       this.behavior = "restart";
       this.shutdown = false;
     },
-    setzero() {
+    setzero() {  //* Обнуляет поле.
       for (let foo = 0; foo < 25; foo++) {
         this.visibleField[foo].order = false;
         this.visibleField[foo].pick = false;
         this.visibleField[foo].show = false;
       }
     },
+    locker() {  //* Блокирует и разблокирует поле.
+      this.lock = !this.lock;
+    }
   },
 };
 </script>
@@ -125,6 +124,10 @@ export default {
 
   width: 300px;
   margin: 20px auto;
+}
+
+.lock {
+  pointer-events: none;
 }
 
 .item {
@@ -170,6 +173,7 @@ button {
   border-radius: 5px;
   background-color: lightgray;
 
+  user-select: none;
   cursor: pointer;
   opacity: 1;
   transition: all .2s linear;
