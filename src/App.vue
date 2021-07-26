@@ -11,7 +11,6 @@
 </template>
 
 <script setup>
-import Classic from "./components/Classic.vue";
 </script>
 
 <style lang="scss">

@@ -3,9 +3,12 @@
     <h1>Remember Me</h1>
     <nav class="bords-list">
       <router-link
-        to="/classic"
         class="bord-link"
-        aria-label="Open Classic bord."
+        v-for="(bar, foo) of links"
+        :key="foo"
+        :to="bar.to"
+        :aria-label="bar.label"
+        :style="{ backgroundImage: `url(${bar.img})` }"
       />
     </nav>
   </main>
@@ -14,7 +17,15 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      links: [
+        {
+          to: "/classic",
+          label: "Open Classic bord.",
+          img: "/src/assets/classic.svg",
+        },
+      ],
+    };
   },
 };
 </script>
@@ -29,19 +40,25 @@ export default {
 }
 
 .bords-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 1fr);
-  grid-gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+  place-items: center;
+  gap: 15px;
 
+  width: 100%;
+  max-width: 500px;
   margin-top: 20px;
 }
 
 .bord-link {
   display: block;
 
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 
-  background: url("../assets/classic.svg") no-repeat center/cover;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 </style>

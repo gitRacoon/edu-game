@@ -1,7 +1,7 @@
 <template>
   <main class="main">
     <h1>Remember and open all green cells</h1>
-    <div class="wrap" :class="{ lock: lock }">
+    <div class="wrap" :class="{ lock }">
       <div
         class="item animate__animated"
         :class="{
