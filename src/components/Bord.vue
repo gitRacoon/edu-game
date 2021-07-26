@@ -8,7 +8,7 @@
         :key="foo"
         :to="bar.to"
         :aria-label="bar.label"
-        :style="{ backgroundImage: `url(${bar.img})` }"
+        :class="bar.img"
       />
     </nav>
   </main>
@@ -22,7 +22,7 @@ export default {
         {
           to: "/classic",
           label: "Open Classic bord.",
-          img: "/src/assets/classic.svg",
+          img: "classic",
         },
       ],
     };
@@ -60,5 +60,9 @@ export default {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  &.classic {
+    background-image: url("../assets/classic.svg");
+  }
 }
 </style>
