@@ -16,6 +16,9 @@
         @click="checkup(foo)"
       />
     </div>
+    <div class="deadline">
+      <span :style="strip" />
+    </div>
     <bord-nav
       :behavior="behavior"
       :lvl="lvl"
@@ -38,6 +41,8 @@ export default {
       lock: true,
       lvl: 0,
       shutdown: false,
+      timer: 300,
+      rest: "lightseagreen",
       visibleField: [],
     };
   },
@@ -50,6 +55,33 @@ export default {
       });
     }
     return (this.visibleField = [...this.initField]);
+  },
+  watch: {
+    timer(value) {
+      switch (value) {
+        case 300:
+          this.rest = "lightseagreen";
+          break;
+        case 200:
+          this.rest = "darksalmon";
+          break;
+        case 100:
+          this.rest = "tomato";
+          break;
+        case 0:
+          this.behavior = "lose";
+          this.lock = true;
+          break;
+      }
+    }
+  },
+  computed: {
+    strip() {
+      return {
+        width: `${this.timer}px`,
+        backgroundColor: this.rest,
+      };
+    },
   },
   methods: {
     init(value) {
@@ -82,6 +114,12 @@ export default {
         }
         this.shutdown = false;
         this.lock = false;
+        this.timer = 300;
+
+        const timer = setInterval(() => {
+          if (!this.timer || this.lock) return clearInterval(timer);
+          return this.timer--;
+        }, 70);
       }, 1000);
     },
     checkup(foo) {
@@ -148,6 +186,23 @@ export default {
   &.miss {
     border: 2px solid tomato;
     box-shadow: inset 0 0 10px tomato;
+  }
+}
+
+.deadline {
+  width: 300px;
+  height: 5px;
+  margin-bottom: 15px;
+
+  & span {
+    display: block;
+    height: 5px;
+
+    border-radius: 3px;
+  }
+
+  &.over {
+    border: 1px solid tomato;
   }
 }
 </style>

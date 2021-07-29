@@ -24,12 +24,12 @@ export default {
       type: String,
       required: true,
     },
-    shutdown: {
-      type: Boolean,
-      required: true,
-    },
     lvl: {
       type: [Number, String],
+      required: true,
+    },
+    shutdown: {
+      type: Boolean,
       required: true,
     },
   },
