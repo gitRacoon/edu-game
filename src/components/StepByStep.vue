@@ -69,7 +69,7 @@ export default {
   grid-gap: 10px;
 
   width: 300px;
-  margin: 20px 0 10px 0;
+  margin: 20px 0;
 }
 
 .item {
