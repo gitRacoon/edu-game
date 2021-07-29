@@ -31,14 +31,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-
-  padding-top: 30px;
-}
-
 .bords-list {
   display: flex;
   flex-wrap: wrap;

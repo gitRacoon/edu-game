@@ -132,10 +132,10 @@ export default {
         this.lock = true;
       }
 
-      if (this.found === this.lvl && this.lvl < 12) {
+      if (this.found === this.lvl && this.lvl < 15) {
         this.behavior = "next";
         this.lock = true;
-      } else if (this.found === this.lvl && this.lvl === 12) {
+      } else if (this.found === this.lvl && this.lvl === 15) {
         this.lvl = "MAX";
         this.behavior = "start";
         this.lock = true;
@@ -146,24 +146,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.main {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  place-content: center;
-
-  height: 100vh;
-  min-height: 500px;
-  max-height: 700px;
-}
-
 .wrap {
   display: grid;
   grid-template: repeat(5, 1fr) / repeat(5, 1fr);
   grid-gap: 10px;
 
   width: 300px;
-  margin: 20px 0;
+  margin: 20px 0 10px 0;
 }
 
 .item {
@@ -190,12 +179,15 @@ export default {
 }
 
 .deadline {
+  display: flex;
+  place-content: center;
+
   width: 300px;
   height: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 
   & span {
-    display: block;
+    display: inline-block;
     height: 5px;
 
     border-radius: 3px;

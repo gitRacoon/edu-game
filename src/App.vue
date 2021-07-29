@@ -33,6 +33,16 @@
   color: lightseagreen;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  place-content: center;
+
+  height: 100vh;
+  min-height: 500px;
+}
+
 .lock {
   pointer-events: none;
 }
