@@ -24,6 +24,11 @@ export default {
           label: "Open Classic bord.",
           img: "classic",
         },
+        {
+          to: "/step-by-step",
+          label: "Open Step by Step bord.",
+          img: "step-by-step",
+        },
       ],
     };
   },
@@ -55,6 +60,10 @@ export default {
 
   &.classic {
     background-image: url("../assets/classic.svg");
+  }
+
+  &.step-by-step {
+    background-image: url("../assets/step-by-step.svg")
   }
 }
 </style>
