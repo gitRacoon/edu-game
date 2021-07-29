@@ -1,7 +1,21 @@
 <template>
   <main class="main">
-    <h1></h1>
-    <div class="wrap" :class="{ lock }"></div>
+    <h1>Open all the cells step by step</h1>
+    <div class="wrap" :class="{ lock }">
+      <div
+        class="item animate__animated"
+        :class="{
+          show: bar.show,
+          animate__headShake: bar.show,
+          pick: false,
+          miss: false,
+          lock: bar.pick,
+        }"
+        v-for="(bar, foo) of field"
+        :key="foo"
+        @click="checkup(foo)"
+      />
+    </div>
     <bord-nav
       :behavior="behavior"
       :lvl="lvl"
@@ -19,19 +33,27 @@ export default {
   data() {
     return {
       behavior: "start",
-      lock: true,
+      lock: false,
       lvl: 0,
       shutdown: false,
-      visibleField: [],
+      field: [],
     }
   },
-  mounted() {},
+  mounted() {
+    for (let foo = 0; foo < 25; foo++) {
+      this.field.push({
+        step: 0,
+        pick: 0,
+        show: false,
+      });
+    }
+    return this.field;
+  },
   methods: {
     init(value) {
       switch (value) {
         case "start":
           this.lvl = 0;
-          break;
         case "next":
           break;
       }
@@ -41,5 +63,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wrap {
+  display: grid;
+  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+  grid-gap: 10px;
 
+  width: 300px;
+  margin: 20px 0 10px 0;
+}
+
+.item {
+  width: 50px;
+  height: 50px;
+  background-color: lightgray;
+
+  transition: all 0.2s linear;
+  cursor: pointer;
+
+  &.show {
+    background-color: lightseagreen;
+  }
+
+  &.pick {
+    border: 2px solid lightseagreen;
+    box-shadow: inset 0 0 10px lightseagreen;
+  }
+
+  &.miss {
+    border: 2px solid tomato;
+    box-shadow: inset 0 0 10px tomato;
+  }
+}
 </style>
