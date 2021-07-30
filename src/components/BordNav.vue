@@ -3,7 +3,8 @@
     Complexity: <strong>{{ lvl }}</strong>
   </p>
   <div class="buttons">
-    <router-link to="/" class="menu-link" aria-label="Go to the menu." />
+    <!-- <router-link to="/" class="menu-link" aria-label="Go to the menu." /> -->
+    <a href="" class="menu-link" aria-label="Go to the menu." />
     <button
       class="play-btn"
       :class="[behavior]"
@@ -12,7 +13,7 @@
     >
       {{ behavior }}
     </button>
-    <button class="cup-btn" aria-label="Open a list of achievements."></button>
+    <button class="up-btn" aria-label="Open a list of achievements."></button>
   </div>
 </template>
 
@@ -71,12 +72,12 @@ export default {
   height: 40px;
 
   font: bold 1.5rem/1.5rem "Zen Loop", cursive;
-  color: white;
+  color: #f7f7f7;
   text-transform: capitalize;
 
   border: none;
   border-radius: 5px;
-  background-color: lightseagreen;
+  background-color: #20b2aa;
 
   user-select: none;
   cursor: pointer;
@@ -84,11 +85,11 @@ export default {
   transition: all 0.2s linear;
 
   &.restart {
-    background-color: darksalmon;
+    background-color: #e9967a;
   }
 
   &.lose {
-    background-color: tomato;
+    background-color: #ff6347;
   }
 
   &:hover {
@@ -96,16 +97,16 @@ export default {
   }
 
   &:disabled {
-    background-color: lightgray;
+    background-color: #d3d3d3;
   }
 }
 
-.cup-btn {
+.up-btn {
   width: 30px;
   height: 30px;
 
   border: none;
-  background: url("../assets/cup.svg") no-repeat center/contain;
+  background: url("../assets/lvl-up.svg") no-repeat center/contain;
 
   cursor: pointer;
   transition: all 0.2s linear;

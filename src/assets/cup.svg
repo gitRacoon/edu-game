@@ -1,6 +1,0 @@
-<svg width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7 30C7 27.7909 8.79086 26 11 26H23C25.2091 26 27 27.7909 27 30V30H7V30Z" fill="#ffd700"/>
-<line x1="17" y1="26" x2="17" y2="19" stroke="#ffd700" stroke-width="4"/>
-<path d="M7 0H27V11C27 15.4183 23.4183 19 19 19H15C10.5817 19 7 15.4183 7 11V0Z" fill="#ffd700"/>
-<path d="M32 3H27H7H2C2.66667 6.66667 5.4 14 11 14H23C29.8 14 31.8333 6.66667 32 3Z" stroke="#ffd700" stroke-width="2"/>
-</svg>
