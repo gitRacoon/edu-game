@@ -1,0 +1,82 @@
+.bord-nav {
+  .lvl {
+    font: 600 1.2rem/1.2rem inherit;
+    letter-spacing: 0.1rem;
+  }
+
+  .buttons {
+    display: flex;
+    place-content: center;
+    place-items: center;
+    gap: 15px;
+
+    margin-top: 15px;
+  }
+
+  .menu-link {
+    width: 30px;
+    height: 30px;
+
+    background: url("../assets/back.svg") no-repeat center/contain;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  .play-btn {
+    display: flex;
+    place-items: center;
+    place-content: center;
+
+    width: 150px;
+    height: 40px;
+    padding-top: 5px;
+
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    color: white;
+    text-transform: capitalize;
+
+    border: none;
+    border-radius: 5px;
+    background-color: lightseagreen;
+
+    user-select: none;
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.2s linear;
+
+    &.restart {
+      background-color: darksalmon;
+    }
+
+    &.lose {
+      background-color: tomato;
+    }
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:disabled {
+      background-color: lightgray;
+    }
+  }
+
+  .up-btn {
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    background: url("../assets/btn-lvlup.svg") no-repeat center/contain;
+
+    cursor: pointer;
+    transition: all 0.2s linear;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}

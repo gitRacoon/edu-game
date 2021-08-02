@@ -1,0 +1,33 @@
+.menu {
+  .bords-list {
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    place-items: center;
+    gap: 15px;
+
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+  }
+
+  .bord-link {
+    display: block;
+
+    width: 70px;
+    height: 100px;
+
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 1.2rem;
+    color: #20b2aa;
+
+    background-position: bottom;
+    background-size: 70px;
+    background-repeat: no-repeat;
+
+    &.classic {
+      background-image: url("../assets/classic-mode.svg");
+    }
+  }
+}

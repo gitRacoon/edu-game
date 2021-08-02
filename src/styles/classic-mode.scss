@@ -1,0 +1,53 @@
+.classic-mode {
+  .wrap {
+    display: grid;
+    grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+    grid-gap: 10px;
+
+    width: 300px;
+    margin: 20px 0 10px 0;
+  }
+
+  .item {
+    width: 50px;
+    height: 50px;
+    background-color: lightgray;
+
+    transition: all 0.2s linear;
+    cursor: pointer;
+
+    &.show {
+      background-color: lightseagreen;
+    }
+
+    &.pick {
+      border: 2px solid lightseagreen;
+      box-shadow: inset 0 0 10px lightseagreen;
+    }
+
+    &.miss {
+      border: 2px solid tomato;
+      box-shadow: inset 0 0 10px tomato;
+    }
+  }
+
+  .deadline {
+    display: flex;
+    place-content: center;
+
+    width: 300px;
+    height: 5px;
+    margin-bottom: 20px;
+
+    & span {
+      display: inline-block;
+      height: 5px;
+
+      border-radius: 3px;
+    }
+
+    &.over {
+      border: 1px solid tomato;
+    }
+  }
+}

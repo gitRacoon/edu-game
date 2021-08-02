@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Aldrich&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  font-family: "Aldrich", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  color: #20b2aa;
+  font-size: 16px;
+  text-align: center;
+  background-color: #f7f7f7;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  place-content: center;
+
+  height: 100vh;
+  min-height: 500px;
+  padding: 10px;
+}
+
+// Pages
+@import "menu";
+@import "classic-mode";
+
+// Tools
+@import "bord-nav";
+
+.lock {
+  pointer-events: none;
+}
